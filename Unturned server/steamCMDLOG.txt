@@ -1,0 +1,11 @@
+Steam Console Client (c) Valve Corporation
+-- type 'quit' to exit --
+Loading Steam API...OK.
+
+Connecting anonymously to Steam Public...Logged in OK
+Waiting for user info...OK
+Downloading item 2464173837 ...
+Success. Downloaded item 2464173837 to "c:\users\sbshi\downloads\steamcmd\steamapps\common\u3ds\servers\test\workshop\steamapps\workshop\content\304930\2464173837" (14579650 bytes) Redirecting stderr to 'C:\Users\sbshi\Downloads\steamcmd\logs\stderr.txt'
+Looks like steam didn't shutdown cleanly, scheduling immediate update check
+[  0%] Checking for available updates...
+[----] Verifying installation...
