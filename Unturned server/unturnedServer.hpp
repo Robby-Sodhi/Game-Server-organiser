@@ -22,7 +22,7 @@ public:
 	void startUnturnedServer();
 	int stopUnturnedServer();
 	void update_app();
-	void workshopDownload(std::string workshopLink);
+	void workshopDownload(std::string workshopID);
 
 };
 
