@@ -199,10 +199,10 @@ void UnturnedServer::update_app()
 
 }
 
-void UnturnedServer::workshopDownload(std::string workshopLink)
+void UnturnedServer::workshopDownload(std::string workshopID)
 {
-	std::string downloadPath = M_currentServerPath + "\\Workshop";
-	std::string workshopCommandStr = '\"' + M_steamCMDPath + "\\steamcmd.exe\"" + " +login anonymous +force_install_dir " + downloadPath + " +workshop_download_item 304930 " + workshopLink + " +quit";
+	std::string downloadPath = '\"' + M_currentServerPath + "\\Workshop" + '\"';
+	std::string workshopCommandStr = '\"' + M_steamCMDPath + "\\steamcmd.exe\"" + " +login anonymous +force_install_dir " + downloadPath + " +workshop_download_item 304930 " + workshopID + " +quit";
 	std::wstring workshopCommandWStr(workshopCommandStr.begin(), workshopCommandStr.end());
 	wchar_t logFilePath[] = L"steamCMDLOG.txt";
 
