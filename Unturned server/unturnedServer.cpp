@@ -141,7 +141,7 @@ int UnturnedServer::stopUnturnedServer()
 	std::string msg = "shutdown 0";
 	std::vector<INPUT> sendShutdown;
 
-	for (auto character : msg) {
+	for (auto &character : msg) {
 
 		INPUT input = { 0 };
 		input.type = INPUT_KEYBOARD;

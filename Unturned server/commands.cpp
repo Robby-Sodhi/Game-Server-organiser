@@ -41,7 +41,7 @@ bool CommandsClass::setCommand(std::string name, std::string value)
 std::string CommandsClass::commandString()
 {
 	std::string commandString;
-	for (auto command : M_commandsAndSettings) {
+	for (auto &command : M_commandsAndSettings) {
 		commandString += command.getNameValuePair().first;
 		commandString += " ";
 		commandString += command.getNameValuePair().second;
