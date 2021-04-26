@@ -1,0 +1,10 @@
+Steam Console Client (c) Valve Corporation
+-- type 'quit' to exit --
+Loading Steam API...OK.
+
+Connecting anonymously to Steam Public...Logged in OK
+Waiting for user info...OK
+Downloading item 2463099029 ...
+Success. Downloaded item 2463099029 to "c:\users\robby\desktop\steam cmd aka unturned server test\steamapps\common\u3ds\servers\test\workshop\steamapps\workshop\content\304930\2463099029" (5924363 bytes) Redirecting stderr to 'C:\Users\robby\Desktop\steam cmd aka unturned server test\logs\stderr.txt'
+[  0%] Checking for available updates...
+[----] Verifying installation...

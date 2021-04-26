@@ -117,17 +117,20 @@ int main() {
 
 
 		}
-		else if (input == "workshopDownload")
+		else if (input == "workshopDownload" && !threadRunning)
 		{
 			cin.ignore((numeric_limits<streamsize>::max)(), '\n');
 
 			std::cout << "workshop ID: ";
-			std::string workshopLink;
-			std::cin >> workshopLink;
+			std::string workshopID;
+			std::cin >> workshopID;
 
 			cin.ignore((numeric_limits<streamsize>::max)(), '\n');
 
-			servers[0].workshopDownload(workshopLink);
+			threadRunning = true;
+			cout << "spinning thread" << endl;
+			update_app = std::thread{ [&] {servers[0].workshopDownload(workshopID); threadFinished = true; } };
+
 		}
 	}
 
