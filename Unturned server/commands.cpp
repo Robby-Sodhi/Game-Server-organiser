@@ -27,8 +27,8 @@ CommandsClass::CommandsClass()
 
 bool CommandsClass::setCommand(std::string name, std::string value)
 {
-	for (auto command : M_commandsAndSettings) {
-		if (command.getNameValuePair().first.compare(name) == 0) {
+	for (auto &command : M_commandsAndSettings) {
+		if (command.getNameValuePairFORCED().first.compare(name) == 0) {
 			if (command.setValue(value)) {
 				return true;
 			}

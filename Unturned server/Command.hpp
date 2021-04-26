@@ -15,6 +15,8 @@ public:
 	bool setValue(std::string value);
 	std::pair<std::string, std::string> getNameValuePair();
 
+	std::pair<std::string, std::string> getNameValuePairFORCED();
+
 };
 
 

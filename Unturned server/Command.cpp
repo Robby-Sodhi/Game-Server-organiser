@@ -65,3 +65,8 @@ std::pair<std::string, std::string> Command::getNameValuePair()
 	}
 	return std::pair<std::string, std::string>(M_name, M_value);
 }
+
+std::pair<std::string, std::string> Command::getNameValuePairFORCED()
+{
+	return std::pair<std::string, std::string>(M_name, M_value);
+}
