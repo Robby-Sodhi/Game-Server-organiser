@@ -21,10 +21,21 @@
   <ItemGroup>
     <ClCompile Include="cApp.cpp" />
     <ClCompile Include="cMain.cpp" />
+    <ClCompile Include="Command.cpp" />
+    <ClCompile Include="commands.cpp" />
+    <ClCompile Include="fileSystemUtils.cpp" />
+    <ClCompile Include="SteamCMD.cpp" />
+    <ClCompile Include="unturned-Server-Organiser.cpp" />
+    <ClCompile Include="unturnedServer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cApp.hpp" />
     <ClInclude Include="cMain.hpp" />
+    <ClInclude Include="Command.hpp" />
+    <ClInclude Include="commands.hpp" />
+    <ClInclude Include="fileSystemUtils.hpp" />
+    <ClInclude Include="SteamCMD.hpp" />
+    <ClInclude Include="unturnedServer.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

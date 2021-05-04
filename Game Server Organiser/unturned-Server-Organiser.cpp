@@ -5,7 +5,6 @@
 #include <map>
 #include "unturnedServer.hpp"
 #include "fileSystemUtils.hpp"
-#include "cMain.hpp"
 #include <string>
 
 
