@@ -162,7 +162,7 @@ int UnturnedServer::stopUnturnedServer()
 	PostMessage(g_hwnd, WM_KEYDOWN, VK_RETURN, 0);
 
 
-	Sleep(5000);
+	Sleep(250);
 	DWORD exitcode;
 	GetExitCodeProcess(unturnedExe, &exitcode);
 	if (exitcode == STILL_ACTIVE) {
@@ -196,7 +196,8 @@ void UnturnedServer::update_app()
 
 void UnturnedServer::workshopDownload(std::string workshopID)
 {
-	std::string downloadPath = '\"' + M_currentServerPath + "\\Workshop" + '\"';
+//steamCMD doesn't understand how to install mods for an unturned server so first we download it to a temp folder
+	std::string downloadPath = '\"' + M_currentServerPath + "\\tempWorkshop" + '\"';
 	std::string workshopCommandStr = '\"' + M_steamCMDPath + "\\steamcmd.exe\"" + " +login anonymous +force_install_dir " + downloadPath + " +workshop_download_item 304930 " + workshopID + " +quit";
 	std::wstring workshopCommandWStr(workshopCommandStr.begin(), workshopCommandStr.end());
 	wchar_t logFilePath[] = L"steamCMDLOG.txt";
@@ -204,4 +205,26 @@ void UnturnedServer::workshopDownload(std::string workshopID)
 	DWORD workshopCommand = runCMD(const_cast<wchar_t*>(workshopCommandWStr.c_str()), logFilePath);
 
 	SteamCMD::checkOutputForErrors(logFilePath);
+
+//after we download it to the tempFolder we now need to move the appropriate folder into server_name/workshop/content or server_name/workshop/maps
+//maps is just for maps content is for everything else
+	
+//fix repeating folder structure stuff here
+//add error checking to make sure we have the permission to move files and make sure that the directories exist before doing anything
+
+	std::string workshop_folder = '\"' + M_currentServerPath + "\\tempworkshop\\steamapps\\workshop\\content\\304930\\" + workshopID + '\"';
+	std::wstring workshop_folderW(workshop_folder.begin(), workshop_folder.end());
+
+	std::string new_workshop_folder = '\"' + M_currentServerPath + "\\Workshop\\Content\\" + workshopID +  '\"' ;
+	std::wstring new_workshop_folderW(new_workshop_folder.begin(), new_workshop_folder.end());
+	bool moveWorkshopFolder_status = MoveFile(
+		const_cast<wchar_t*>(workshop_folderW.c_str()),
+		const_cast<wchar_t*>(new_workshop_folderW.c_str())
+	);
+
+	if (moveWorkshopFolder_status == false) {
+		DWORD error = GetLastError();
+		throw std::runtime_error("move folder failed");
+	}
+
 }
