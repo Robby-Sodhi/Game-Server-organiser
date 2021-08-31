@@ -132,37 +132,15 @@ int UnturnedServer::stopUnturnedServer()
 	}
 
 	EnumWindows(enumWindowFunction, M_processId);
-	
 
-//write a function to convert letters into their virtual key counterparts using some sort of map/hash-table
+	std::string shutdown = "shutdown 0";
+	for (char i : shutdown) {
+		PostMessage(g_hwnd, WM_KEYDOWN, ascii_to_virtual_key(i), 0);
+	}
 
-#define VK_KEY_S 0x53
-#define VK_KEY_H 0x48
-#define VK_KEY_U 0x55
-#define VK_KEY_T 0x54
-#define VK_KEY_D 0x44
-#define VK_KEY_O 0x4F
-#define VK_KEY_W 0x57
-#define VK_KEY_N 0x4E
-#define VK_SPACE 0x20 
-#define VK_KEY_0 0x30
-#define VK_RETURN 0x0D
-
-
-	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_S, 0);
-	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_H, 0);
-	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_U, 0);
-	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_T, 0);
-	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_D, 0);
-	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_O, 0);
-	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_W, 0);
-	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_N, 0);
-	PostMessage(g_hwnd, WM_KEYDOWN, VK_SPACE, 0);
-	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_0, 0);
 	PostMessage(g_hwnd, WM_KEYDOWN, VK_RETURN, 0);
 
-
-	Sleep(250);
+	Sleep(1000);
 	DWORD exitcode;
 	GetExitCodeProcess(unturnedExe, &exitcode);
 	if (exitcode == STILL_ACTIVE) {

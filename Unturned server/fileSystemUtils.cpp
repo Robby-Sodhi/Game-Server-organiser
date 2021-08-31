@@ -2,6 +2,7 @@
 #include <experimental/filesystem>
 #include <windows.h>
 #include <fstream>
+#include <map>
 
 
 std::vector<std::string> getServerList(std::string path)
@@ -93,5 +94,54 @@ void writeToFile(std::wstring path, std::string data) {
 		return;
 	}
 	throw std::runtime_error("error opening file");
+
+}
+
+int ascii_to_virtual_key(char ascii) {
+	//https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
+	std::map<char, int> vKey_lookup;
+	vKey_lookup['0'] = 0x30;
+	vKey_lookup['1'] = 0x31;
+	vKey_lookup['2'] = 0x32;
+	vKey_lookup['3'] = 0x33;
+	vKey_lookup['4'] = 0x34;
+	vKey_lookup['5'] = 0x35;
+	vKey_lookup['6'] = 0x36;
+	vKey_lookup['7'] = 0x37;
+	vKey_lookup['8'] = 0x38;
+	vKey_lookup['9'] = 0x39;
+	vKey_lookup['a'] = 0x41;
+	vKey_lookup['b'] = 0x42;
+	vKey_lookup['c'] = 0x43;
+	vKey_lookup['d'] = 0x44;
+	vKey_lookup['e'] = 0x45;
+	vKey_lookup['f'] = 0x46;
+	vKey_lookup['g'] = 0x47;
+	vKey_lookup['h'] = 0x48;
+	vKey_lookup['i'] = 0x49;
+	vKey_lookup['j'] = 0x4A;
+	vKey_lookup['k'] = 0x4B;
+	vKey_lookup['l'] = 0x4C;
+	vKey_lookup['m'] = 0x4D;
+	vKey_lookup['n'] = 0x4E;
+	vKey_lookup['o'] = 0x4F;
+	vKey_lookup['p'] = 0x50;
+	vKey_lookup['q'] = 0x51;
+	vKey_lookup['r'] = 0x52;
+	vKey_lookup['s'] = 0x53;
+	vKey_lookup['t'] = 0x54;
+	vKey_lookup['u'] = 0x55;
+	vKey_lookup['v'] = 0x56;
+	vKey_lookup['w'] = 0x57;
+	vKey_lookup['x'] = 0x58;
+	vKey_lookup['y'] = 0x59;
+	vKey_lookup['z'] = 0x5A;
+	vKey_lookup[' '] = 0x20;
+
+	if (vKey_lookup.find(ascii) == vKey_lookup.end()){
+		throw std::runtime_error("vKey lookup failed");
+	} 
+
+	return vKey_lookup[ascii];
 
 }
