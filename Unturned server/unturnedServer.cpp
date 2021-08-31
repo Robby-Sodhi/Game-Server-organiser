@@ -212,10 +212,10 @@ void UnturnedServer::workshopDownload(std::string workshopID)
 //fix repeating folder structure stuff here
 //add error checking to make sure we have the permission to move files and make sure that the directories exist before doing anything
 
-	std::string workshop_folder = '\"' + M_currentServerPath + "\\tempworkshop\\steamapps\\workshop\\content\\304930\\" + workshopID + '\"';
+ 	std::string workshop_folder =  M_currentServerPath + "\\tempworkshop\\steamapps\\workshop\\content\\304930\\" + workshopID;
 	std::wstring workshop_folderW(workshop_folder.begin(), workshop_folder.end());
 
-	std::string new_workshop_folder = '\"' + M_currentServerPath + "\\Workshop\\Content\\" + workshopID +  '\"' ;
+	std::string new_workshop_folder =  M_currentServerPath + "\\Workshop\\Content\\" + workshopID ;
 	std::wstring new_workshop_folderW(new_workshop_folder.begin(), new_workshop_folder.end());
 	bool moveWorkshopFolder_status = MoveFile(
 		const_cast<wchar_t*>(workshop_folderW.c_str()),
