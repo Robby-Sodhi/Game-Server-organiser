@@ -126,7 +126,6 @@ int UnturnedServer::stopUnturnedServer()
 	
 
 	HANDLE unturnedExe = OpenProcess(PROCESS_ALL_ACCESS, TRUE, M_processId);
-
 	
 	if (unturnedExe == NULL) {
 		return 2;
@@ -139,43 +138,35 @@ int UnturnedServer::stopUnturnedServer()
 	EnumWindows(enumWindowFunction, M_processId);
 	DWORD threadProcessId;
 
+//write a function to convert letters into their virtual key counterparts using some sort of map/hash-table
 
-	auto result = SetForegroundWindow(g_hwnd);
+#define VK_KEY_S 0x53
+#define VK_KEY_H 0x48
+#define VK_KEY_U 0x55
+#define VK_KEY_T 0x54
+#define VK_KEY_D 0x44
+#define VK_KEY_O 0x4F
+#define VK_KEY_W 0x57
+#define VK_KEY_N 0x4E
+#define VK_SPACE 0x20 
+#define VK_KEY_0 0x30
+#define VK_RETURN 0x0D
 
-	std::string msg = "shutdown 0";
-	std::vector<INPUT> sendShutdown;
 
-	for (auto &character : msg) {
+	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_S, 0);
+	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_H, 0);
+	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_U, 0);
+	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_T, 0);
+	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_D, 0);
+	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_O, 0);
+	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_W, 0);
+	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_N, 0);
+	PostMessage(g_hwnd, WM_KEYDOWN, VK_SPACE, 0);
+	PostMessage(g_hwnd, WM_KEYDOWN, VK_KEY_0, 0);
+	PostMessage(g_hwnd, WM_KEYDOWN, VK_RETURN, 0);
 
-		INPUT input = { 0 };
-		input.type = INPUT_KEYBOARD;
-		input.ki.dwFlags = KEYEVENTF_UNICODE;
-		input.ki.wScan = character;
-		sendShutdown.push_back(input);
 
-		input.ki.dwFlags |= KEYEVENTF_KEYUP;
-		sendShutdown.push_back(input);
-	}
-
-	SendInput(sendShutdown.size(), sendShutdown.data(), sizeof(INPUT));
-
-	INPUT enter;
-	enter.type = INPUT_KEYBOARD;
-	enter.ki.wScan = 0;
-	enter.ki.time = 0;
-	enter.ki.dwExtraInfo = 0;
-	enter.ki.wVk = VK_RETURN;
-	enter.ki.dwFlags = 0;
-
-	SendInput(1, &enter, sizeof(INPUT));
-
-	enter.ki.dwFlags = KEYEVENTF_KEYUP;
-
-	SendInput(1, &enter, sizeof(INPUT));
-
-	SetForegroundWindow(currentWindow);
-	
-	Sleep(500);
+	Sleep(5000);
 	DWORD exitcode;
 	GetExitCodeProcess(unturnedExe, &exitcode);
 	if (exitcode == STILL_ACTIVE) {
