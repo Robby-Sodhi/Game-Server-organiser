@@ -119,11 +119,15 @@ static BOOL CALLBACK enumWindowFunction(HWND hWnd, LPARAM lparam) {
 }
 int UnturnedServer::stopUnturnedServer()
 {
+	
 	if (M_processId == NULL) {
 		return 2;
 	}
+	
 
 	HANDLE unturnedExe = OpenProcess(PROCESS_ALL_ACCESS, TRUE, M_processId);
+
+	
 	if (unturnedExe == NULL) {
 		return 2;
 	}
@@ -170,7 +174,7 @@ int UnturnedServer::stopUnturnedServer()
 	SendInput(1, &enter, sizeof(INPUT));
 
 	SetForegroundWindow(currentWindow);
-
+	
 	Sleep(500);
 	DWORD exitcode;
 	GetExitCodeProcess(unturnedExe, &exitcode);
@@ -178,8 +182,8 @@ int UnturnedServer::stopUnturnedServer()
 		return 0;
 	}
 	return 1;
-
-
+	
+	
 }
 
 void UnturnedServer::update_app()

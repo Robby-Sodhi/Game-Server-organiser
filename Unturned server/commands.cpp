@@ -5,7 +5,7 @@ CommandsClass::CommandsClass()
 {
 
 	M_commandsAndSettings.push_back(Command("bind", "0.0.0.0"));
-	M_commandsAndSettings.push_back(Command("camera", "both", std::vector<std::string> {"first", "third", "both"}));
+	M_commandsAndSettings.push_back(Command("Perspective", "both", std::vector<std::string> {"first", "third", "both"}));
 	M_commandsAndSettings.push_back(Command("cheats", true));
 	M_commandsAndSettings.push_back(Command("filter", false));
 	M_commandsAndSettings.push_back(Command("gamemode", "Survival", std::vector<std::string>{"Survival", "Horde", "Arena"}));
@@ -18,7 +18,7 @@ CommandsClass::CommandsClass()
 	M_commandsAndSettings.push_back(Command("owner", "123456789"));
 	M_commandsAndSettings.push_back(Command("port", "27015"));
 	M_commandsAndSettings.push_back(Command("pve", false));
-	M_commandsAndSettings.push_back(Command("queue", "10"));
+	M_commandsAndSettings.push_back(Command("Queue_Size", "10"));
 	M_commandsAndSettings.push_back(Command("sync", false));
 	M_commandsAndSettings.push_back(Command("welcome", "Welcome to this Unturned Server (Please change commands.dat)"));
 
