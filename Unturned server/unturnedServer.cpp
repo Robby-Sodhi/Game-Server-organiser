@@ -130,13 +130,9 @@ int UnturnedServer::stopUnturnedServer()
 	if (unturnedExe == NULL) {
 		return 2;
 	}
-	if (!AllowSetForegroundWindow(M_processId)) {
-		return 2;
-	}
 
-	HWND currentWindow = GetActiveWindow();
 	EnumWindows(enumWindowFunction, M_processId);
-	DWORD threadProcessId;
+	
 
 //write a function to convert letters into their virtual key counterparts using some sort of map/hash-table
 
@@ -172,6 +168,10 @@ int UnturnedServer::stopUnturnedServer()
 	if (exitcode == STILL_ACTIVE) {
 		return 0;
 	}
+//if server shutsdown clear out of date variables
+	M_processId = NULL;
+	g_hwnd = NULL;
+
 	return 1;
 	
 	
